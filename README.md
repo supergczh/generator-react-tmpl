@@ -1,4 +1,5 @@
 # generator-react-tmpl [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url] [![Coverage percentage][coveralls-image]][coveralls-url]
+
 react 项目脚手架
 
 ## 介绍
@@ -66,3 +67,12 @@ react-tmpl 基于 create-react-app， 可以快速初始化 react 项目基本�
 ## 待优化项
 
 * 在没有版本锁定情况下安装依赖，会报 less 方面的错误
+
+[npm-image]: https://badge.fury.io/js/generator-react-tmpl.svg
+[npm-url]: https://npmjs.org/package/generator-react-tmpl
+[travis-image]: https://travis-ci.org/idujiawei/generator-react-tmpl.svg?branch=master
+[travis-url]: https://travis-ci.org/idujiawei/generator-react-tmpl
+[daviddm-image]: https://david-dm.org/idujiawei/generator-react-tmpl.svg?theme=shields.io
+[daviddm-url]: https://david-dm.org/idujiawei/generator-react-tmpl
+[coveralls-image]: https://coveralls.io/repos/idujiawei/generator-react-tmpl/badge.svg
+[coveralls-url]: https://coveralls.io/r/idujiawei/generator-react-tmpl
