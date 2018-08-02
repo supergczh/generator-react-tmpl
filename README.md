@@ -66,7 +66,7 @@ react-tmpl 基于 create-react-app， 可以快速初始化 react 项目基本�
     
 ## 待优化项
 
-* 在没有版本锁定情况下安装依赖，会报 less 方面的错误
+
 
 [npm-image]: https://badge.fury.io/js/generator-react-tmpl.svg
 [npm-url]: https://npmjs.org/package/generator-react-tmpl
