@@ -64,8 +64,16 @@ react-tmpl 基于 create-react-app， 可以快速初始化 react 项目基本�
     ├── README.md
     └── yarn.lock
     
-## 待优化项
 
+## 参考文档
+
+* [redux中文文档](http://www.redux.org.cn/)
+* [react-router4.0 官网](https://reacttraining.com/react-router/)
+* [react-router-config](https://github.com/cherijs/react-router-config)
+* [antd 官网](https://ant.design/index-cn)
+* [axios 使用文档](https://www.kancloud.cn/yunye/axios/234845)
+* [immutable.js 官方文档](https://facebook.github.io/immutable-js/docs/#/)
+* [react-script 集成 sass](http://note.youdao.com/noteshare?id=8f7181121f6bab39563a903baa39b523)
 
 
 [npm-image]: https://badge.fury.io/js/generator-react-tmpl.svg

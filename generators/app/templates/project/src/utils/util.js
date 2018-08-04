@@ -75,8 +75,9 @@ export const renderPagination = function (
 }
 
 /**
- *校验身份证号
- *
+ * 校验身份证号 
+ * 可用于 antd form 表单自定义校验
+ * 
  * @export
  * @param {*} no
  * @returns
@@ -164,9 +165,10 @@ export function extractIdCardNoInfo(no) {
 }
 
 /**
- *
- *
+ * 
  * @export 校验银行卡号
+ * 可用于 antd form 表单自定义校验
+ * 
  * @param {*} rule
  * @param {*} bankAccount
  * @param {*} callback
@@ -183,7 +185,16 @@ export function verifyBankAccount(rule, bankAccount, callback) {
     return true;
 }
 
-// 校验手机号
+/**
+ * 校验手机号
+ * 可用于 antd form 表单自定义校验
+ *
+ * @export
+ * @param {*} rule
+ * @param {*} bankAccount
+ * @param {*} callback
+ * @returns
+ */
 export function verifyPhone(rule, bankAccount, callback) {
     const myreg = /^[1][3,4,5,7,8][0-9]{9}$/;
     if (!myreg.test(bankAccount)) {
@@ -194,7 +205,16 @@ export function verifyPhone(rule, bankAccount, callback) {
     return true;
 }
 
-// 校验金额
+/**
+ * 校验金额
+ * 可用于 antd form 表单自定义校验
+ *
+ * @export
+ * @param {*} rule
+ * @param {*} bankAccount
+ * @param {*} callback
+ * @returns
+ */
 export function verifyFloat(rule, bankAccount, callback) {
     const reg = /(^[1-9]([0-9]+)?(\.[0-9]{1,2})?$)|(^(0){1}$)|(^[0-9]\.[0-9]([0-9])?$)/;
     if (!reg.test(bankAccount)) {
@@ -205,7 +225,16 @@ export function verifyFloat(rule, bankAccount, callback) {
     return true;
 }
 
-// 校验正整数
+/**
+ * 校验正整数
+ * 可用于 antd form 表单自定义校验
+ *
+ * @export
+ * @param {*} rule
+ * @param {*} integer
+ * @param {*} callback
+ * @returns
+ */
 export function verifyInteger(rule, integer, callback) {
     const reg = /^[1-9]\d*$/;
     if (!reg.test(integer)) {
