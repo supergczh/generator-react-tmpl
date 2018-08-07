@@ -1,14 +1,14 @@
 /*
- * @ 作者: Mr.D 
- * @ 创建时间: 2018-01-31 17:51:48 
- * @ 文件主题: 页面路由
- * 
+ * @作者: jiawei 
+ * @创建时间: 2018-08-06 19:34:45 
+ * @文件主题: 页面路由
+ *
  */
 
 import App from '../app/app.js';
 import Layout from '../container/layout';
 
-import Home from '../container/home'; // 首页
+import Home from '../container/option'; // 首页
 
 export default [
     {
@@ -24,10 +24,10 @@ export default [
                         exact: true,
                     },
                     {
-                        path: '/home',
+                        path: '/option1/:page?',
                         component: Home,
                         exact: true,
-                    },
+                    }
                 ]
             }
         ]

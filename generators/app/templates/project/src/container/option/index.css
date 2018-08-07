@@ -1,0 +1,15 @@
+.home .home_content {
+    padding: 30px 36px;
+    background: #FFF;
+    text-align: center;
+}
+
+.home .title {
+    font-size: 30px;
+}
+
+.home .pic {
+    display: inline-block;
+    width: 25%;
+    vertical-align: baseline;
+}

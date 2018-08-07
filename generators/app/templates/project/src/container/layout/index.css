@@ -1,0 +1,14 @@
+.logo {
+    height: 94px;
+    padding: 27px 43px;
+    line-height: 40px;
+    text-align: center;
+}
+
+.ant-layout-sider-collapsed .logo {
+    padding: 13px 3px;
+}
+
+.ant-menu-inline {
+    border: none;
+}

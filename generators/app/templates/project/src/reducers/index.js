@@ -12,9 +12,11 @@
  */
 import { combineReducers } from 'redux';//Redux 提供了 combineReducers() 工具类整合reducer
 import commonReducer from './commonReducer.js';
+import optionReducer from './optionReducer.js';
 
 const rootReducer = combineReducers({
-    commonReducer: commonReducer
+    commonReducer: commonReducer,
+    optionReducer: optionReducer
 })
 
 export default rootReducer;

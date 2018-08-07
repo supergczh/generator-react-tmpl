@@ -9,7 +9,7 @@ import { utilReqestProcess } from '../utils/util.js';
 import {
     getForServer,
     getTableData
-} from '../requests/componentRequest.js';
+} from '../requests/commonRequest.js';
 
 // loading 状态
 export function sendingStatus(newData) {
@@ -57,7 +57,7 @@ export function firstGetTableData(condition) {
         dispatch(sendingStatus(true));
         getTableData(condition)
             .then((response) => {
-                
+
                 utilReqestProcess(response['headData'])
                     .then((response) => {
                         dispatch(condition['setHeadAction'](response['data']));
