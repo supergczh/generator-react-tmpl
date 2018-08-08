@@ -32,7 +32,9 @@
   },
   "dependencies": {
     "chalk": "^2.1.0",
+    "fs": "0.0.1-security",
     "mkdirp": "^0.5.1",
+    "object-assign": "^4.1.1",
     "path": "^0.12.7",
     "yeoman-generator": "^2.0.1",
     "yosay": "^2.0.1"
@@ -76,7 +78,7 @@
     },
     "plugins": [
       "prettier"
-    ],
-    "repository": "idujiawei/generator-react-tmpl"
-  }
+    ]
+  },
+  "repository": "idujiawei/generator-react-tmpl"
 }

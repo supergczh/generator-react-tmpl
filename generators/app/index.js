@@ -1,18 +1,47 @@
 'use strict';
 const Generator = require('yeoman-generator');
 const chalk = require('chalk');
-var path = require('path');
-var mkdirp = require('mkdirp');
+const path = require('path');
+const fs = require('fs');
+const mkdirp = require('mkdirp');
+const objectAssign = require('object-assign');
 
 module.exports = class extends Generator {
-  prompting() {
+  initializing() {
+    this.props = {
+      isCanCreated: true,
+      projectName: ''
+    };
+
     var prompts = [
       {
         type: 'input',
         name: 'projectName',
         message: 'Please input project name (react_app):',
         default: 'react_app'
-      },
+      }
+    ];
+
+    return this.prompt(prompts).then(props => {
+      const root = path.resolve(props.projectName);
+      const dirIsExist = fs.existsSync(root);
+
+      if (dirIsExist) {
+        this.props = objectAssign({}, this.props, {
+          isCanCreated: isSafeToCreateProjectIn(root, props.projectName)
+        });
+      }
+
+      this.props = objectAssign({}, this.props, props);
+    });
+  }
+
+  prompting() {
+    if (!this.props.isCanCreated) {
+      return;
+    }
+
+    var prompts = [
       {
         type: 'input',
         name: 'projectDesc',
@@ -38,11 +67,15 @@ module.exports = class extends Generator {
     ];
 
     return this.prompt(prompts).then(props => {
-      this.props = props;
+      this.props = objectAssign({}, this.props, props);
     });
   }
 
   defaults() {
+    if (!this.props.isCanCreated) {
+      return;
+    }
+
     if (path.basename(this.destinationPath()) !== this.props.projectName) {
       mkdirp(this.props.projectName);
       this.destinationRoot(this.destinationPath(this.props.projectName));
@@ -50,6 +83,10 @@ module.exports = class extends Generator {
   }
 
   writing() {
+    if (!this.props.isCanCreated) {
+      return;
+    }
+
     var pkg = this.fs.readJSON(this.templatePath('./basic/package_tmpl.json'), {});
     pkg.name = this.props.projectName;
     pkg.description = this.props.projectDesc;
@@ -74,18 +111,28 @@ module.exports = class extends Generator {
   }
 
   install() {
+    if (!this.props.isCanCreated) {
+      return;
+    }
+
     console.clear();
     console.log();
-    console.log('Installing packages. This might take a couple of minutes.');
-    console.log();
     if (this.props.packageManager === 'npm') {
+      console.log('Installing packages. This might take a couple of minutes.');
+      console.log();
       this.npmInstall();
     } else if (this.props.packageManager === 'yarn') {
+      console.log('Installing packages. This might take a couple of minutes.');
+      console.log();
       this.yarnInstall();
     }
   }
 
   end() {
+    if (!this.props.isCanCreated) {
+      return;
+    }
+
     if (this.props.packageManager === 'none') {
       console.log();
       console.log(chalk.green('Install successfully!'));
@@ -109,3 +156,43 @@ module.exports = class extends Generator {
     }
   }
 };
+
+function isSafeToCreateProjectIn(root, name) {
+  const validFiles = [
+    '.DS_Store',
+    'Thumbs.db',
+    '.git',
+    '.gitignore',
+    '.idea',
+    'README.md',
+    'LICENSE',
+    'web.iml',
+    '.hg',
+    '.hgignore',
+    '.hgcheck',
+    '.npmignore',
+    'mkdocs.yml',
+    'docs',
+    '.travis.yml',
+    '.gitlab-ci.yml',
+    '.gitattributes'
+  ];
+
+  const conflicts = fs.readdirSync(root).filter(file => !validFiles.includes(file));
+
+  if (conflicts.length < 1) {
+    return true;
+  }
+  console.log();
+  console.log(`The directory ${chalk.green(name)} contains files that could conflict:`);
+  console.log();
+
+  for (const file of conflicts) {
+    console.log(`  ${file}`);
+  }
+
+  console.log();
+  console.log('Either try using a new directory name, or remove the files listed above.');
+
+  return false;
+}
