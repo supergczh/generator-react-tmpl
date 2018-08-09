@@ -79,6 +79,5 @@
     "plugins": [
       "prettier"
     ]
-  },
-  "repository": "idujiawei/generator-react-tmpl"
+  }
 }
