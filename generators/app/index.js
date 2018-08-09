@@ -27,9 +27,9 @@ module.exports = class extends Generator {
       const dirIsExist = fs.existsSync(root);
 
       if (dirIsExist) {
-        this.props = objectAssign({}, this.props, {
-          isCanCreated: isSafeToCreateProjectIn(root, props.projectName)
-        });
+        if (!isSafeToCreateProjectIn(root, props.projectName)) {
+          process.exit(1);
+        }
       }
 
       this.props = objectAssign({}, this.props, props);
@@ -37,10 +37,6 @@ module.exports = class extends Generator {
   }
 
   prompting() {
-    if (!this.props.isCanCreated) {
-      return;
-    }
-
     var prompts = [
       {
         type: 'input',
@@ -72,10 +68,6 @@ module.exports = class extends Generator {
   }
 
   defaults() {
-    if (!this.props.isCanCreated) {
-      return;
-    }
-
     if (path.basename(this.destinationPath()) !== this.props.projectName) {
       mkdirp(this.props.projectName);
       this.destinationRoot(this.destinationPath(this.props.projectName));
@@ -83,10 +75,6 @@ module.exports = class extends Generator {
   }
 
   writing() {
-    if (!this.props.isCanCreated) {
-      return;
-    }
-
     var pkg = this.fs.readJSON(this.templatePath('./basic/package_tmpl.json'), {});
     pkg.name = this.props.projectName;
     pkg.description = this.props.projectDesc;
@@ -111,10 +99,6 @@ module.exports = class extends Generator {
   }
 
   install() {
-    if (!this.props.isCanCreated) {
-      return;
-    }
-
     console.clear();
     console.log();
     if (this.props.packageManager === 'npm') {
@@ -129,10 +113,6 @@ module.exports = class extends Generator {
   }
 
   end() {
-    if (!this.props.isCanCreated) {
-      return;
-    }
-
     if (this.props.packageManager === 'none') {
       console.log();
       console.log(chalk.green('Install successfully!'));
