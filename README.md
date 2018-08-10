@@ -26,6 +26,7 @@ react-tmpl 基于 create-react-app， 可以快速初始化 react 项目基本�
 
 * react
 * redux
+* redux-actions
 * react-router-dom
 * react-router-config
 * react-scripts
