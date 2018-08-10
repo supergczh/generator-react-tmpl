@@ -41,11 +41,12 @@ module.exports = class extends Generator {
       {
         type: 'input',
         name: 'projectDesc',
-        message: 'Please input project description:'
+        message: 'Please input project description (react project):',
+        default: 'react project'
       },
       {
         type: 'input',
-        name: 'projectAuthor',
+        name: 'projectAuthor:',
         message: 'Author'
       },
       {

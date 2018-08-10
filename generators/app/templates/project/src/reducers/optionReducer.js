@@ -1,4 +1,5 @@
-import objectAssign from 'object-assign';
+import { handleActions } from 'redux-actions';
+
 import {
     PIC_LIST_DATA
 } from '../constants/ActionTypes';
@@ -7,16 +8,8 @@ const initialState = {
     picListData: {},
 };
 
-
-function optionReducer(state = initialState, action) {
-
-    switch (action.type) {
-        case PIC_LIST_DATA:
-            return objectAssign({}, state,
-                { picListData: action.newData }
-            );
-        default:
-            return state;
+export default handleActions({
+    [PIC_LIST_DATA](state, action) {
+        return { ...state, picListData: action.payload }
     }
-}
-export default optionReducer;
+}, initialState);

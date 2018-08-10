@@ -1,3 +1,4 @@
+import { createAction } from 'redux-actions';
 
 import {
     SENDING_STATUS,
@@ -12,14 +13,15 @@ import {
 } from '../requests/commonRequest.js';
 
 // loading 状态
-export function sendingStatus(newData) {
-    return { type: SENDING_STATUS, newData }
-}
+export const sendingStatus = createAction(
+    SENDING_STATUS, payload => payload
+)
 
 // 二级数据更新标志
-export function isUpdate(newData) {
-    return { type: IS_UPDATE, newData }
-}
+export const isUpdate = createAction(
+    IS_UPDATE, payload => payload
+)
+
 
 /**
  * get请求
@@ -44,7 +46,6 @@ export function getDataForServer(url, condition, setDataAction) {
         });
     }
 }
-
 /**
  * 首次请求列表数据
  *

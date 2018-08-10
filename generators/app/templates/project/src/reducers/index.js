@@ -15,8 +15,8 @@ import commonReducer from './commonReducer.js';
 import optionReducer from './optionReducer.js';
 
 const rootReducer = combineReducers({
-    commonReducer: commonReducer,
-    optionReducer: optionReducer
+    commonReducer,
+    optionReducer
 })
 
 export default rootReducer;

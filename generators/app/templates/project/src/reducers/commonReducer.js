@@ -1,4 +1,4 @@
-import objectAssign from 'object-assign';
+import { handleActions } from 'redux-actions';
 import {
     SENDING_STATUS,
     IS_UPDATE
@@ -9,20 +9,11 @@ const initialState = {
     isUpdate: 0
 };
 
-
-function commonReducer(state = initialState, action) {
-
-    switch (action.type) {
-        case SENDING_STATUS:
-            return objectAssign({}, state,
-                { sendingStatus: action.newData }
-            );
-        case IS_UPDATE:
-            return objectAssign({}, state,
-                { isUpdate: action.newData }
-            );
-        default:
-            return state;
+export default handleActions({
+    [SENDING_STATUS](state, action) {
+        return { ...state, sendingStatus: action.payload }
+    },
+    [IS_UPDATE](state, action) {
+        return { ...state, isUpdate: action.payload }
     }
-}
-export default commonReducer;
+}, initialState);
